@@ -16,7 +16,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(evil-mode 1)
+
 (toggle-truncate-lines 1)
 
+(defun open-init-file()
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
 
+(global-set-key (kbd "<f2>") 'open-init-file)
+(global-set-key (kbd "<f1>") 'eval-buffer)
+(evil-mode 1)
