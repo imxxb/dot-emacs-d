@@ -8,6 +8,7 @@
 (defvar imxxb/packages '(
 			 evil
 			 htmlize
+			 monokai-theme
 			 )
   "Default packages")
 
@@ -27,10 +28,11 @@
 ;;  (dolist (pkg imxxb/packages)
 ;;    (when (not (package-installed-p pkg))
 ;;      (package-install pkg))))
-(dolist (pkg imxxb/packages)
-  (when (not (package-installed-p pkg))
-  (package-install pkg)
-  ))
+;;(dolist (pkg imxxb/packages)
+;;  (when (not (package-installed-p pkg))
+;;  (package-install pkg)
+;;  ))
+(package-install-selected-packages)
 
 
 (set-default-font "Inconsolata-12")
@@ -44,3 +46,4 @@
 (global-set-key (kbd "<f2>") 'open-init-file)
 (global-set-key (kbd "<f1>") 'eval-buffer)
 (evil-mode 1)
+(load-theme 'monokai 1)
