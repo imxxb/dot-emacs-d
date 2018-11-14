@@ -1,7 +1,10 @@
 (require 'package)
 
-(setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
+(setq package-archives '(
+			 ("org" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+			 ("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+			 ))
 (package-initialize)
 (require 'cl)
 
@@ -9,6 +12,7 @@
 			 evil
 			 htmlize
 			 monokai-theme
+			 ox-reveal
 			 )
   "Default packages")
 
@@ -32,10 +36,10 @@
 ;;  (when (not (package-installed-p pkg))
 ;;  (package-install pkg)
 ;;  ))
+(package-refresh-contents)
 (package-install-selected-packages)
 
 
-(set-default-font "Inconsolata-12")
 (global-set-key "\C-ca" 'org-agenda)
 (toggle-truncate-lines 1)
 
@@ -47,3 +51,15 @@
 (global-set-key (kbd "<f1>") 'eval-buffer)
 (evil-mode 1)
 (load-theme 'monokai 1)
+(set-default-font "Inconsolata-12")
+
+(require 'recentf)
+(recentf-mode 1)
+(setq recentf-max-menu-item 10)
+(global-set-key (kbd "C-x C-r") 'recentf-open-files)
+(require 'ox-reveal)
+
+;;(prefer-coding-system 'utf-8)
+;;(set-default-coding-systems 'utf-8)
+;;(set-language-environment 'utf-8)
+;;(set-selection-coding-system 'utf-8)
