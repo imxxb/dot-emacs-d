@@ -1,47 +1,14 @@
-(require 'package)
-
-(setq package-archives '(
-			 ("org" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-			 ("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-			 ))
 (package-initialize)
-(require 'cl)
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+(require 'init-packages)
+(require 'init-better-defaults)
 
-(defvar imxxb/packages '(
-			 evil
-			 htmlize
-			 monokai-theme
-			 ox-reveal
-			 )
-  "Default packages")
 
-(setq package-selected-packages imxxb/packages)
-
-;;(defun imxxb/packages-installed-p ()
-;;  (loop for pkg in imxxb/packages
-;;	when
-;;	(not (package-installed-p pkg))
-;;	do
-;;	(return nil)
-;;	finally (return t)))
-
-;;(unless (imxxb/packages-installed-p)
-;;  (message "%s" "Refreshing package database...")
-;;  (package-refresh-contents)
-;;  (dolist (pkg imxxb/packages)
-;;    (when (not (package-installed-p pkg))
-;;      (package-install pkg))))
-;;(dolist (pkg imxxb/packages)
-;;  (when (not (package-installed-p pkg))
-;;  (package-install pkg)
-;;  ))
 (package-refresh-contents)
 (package-install-selected-packages)
 
 
 (global-set-key "\C-ca" 'org-agenda)
-(toggle-truncate-lines 1)
 
 (defun open-init-file()
   (interactive)
