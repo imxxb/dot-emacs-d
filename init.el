@@ -18,7 +18,7 @@
 (global-set-key (kbd "<f1>") 'eval-buffer)
 (evil-mode 1)
 (load-theme 'monokai 1)
-(set-default-font "Inconsolata-12")
+(set-frame-font "Inconsolata-13")
 
 (require 'recentf)
 (recentf-mode 1)
