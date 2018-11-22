@@ -4,3 +4,6 @@ elpa/
 \#*\#
 recentf
 configuration.el
+_configuration.el
+_configuration.org
+init.el

@@ -1,0 +1,4 @@
+* local settings
+#+BEGIN_SRC emacs-lisp
+(setq org-agenda-files (list "~/PlainTextLife/inbox.org"))
+#+END_SRC
