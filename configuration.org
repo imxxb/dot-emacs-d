@@ -1,4 +1,63 @@
-* test
-#+BEGIN_SRC emacs-lisp
-(message "%s" "hello")
-#+END_SRC
+
+* basic
+  #+BEGIN_SRC emacs-lisp
+  (require 'cl)
+  (toggle-truncate-lines 1)
+  #+END_SRC
+* packages
+** set package archives
+   #+BEGIN_SRC emacs-lisp
+   (setq package-archives '(
+   ("org" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+   ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+   ("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+   ))
+   #+END_SRC
+
+** set customer packages
+   #+BEGIN_SRC emacs-lisp
+   (defvar imxxb/packages '(evil
+    htmlize
+    monokai-theme
+    ox-reveal
+   )
+   "Default packages")
+   #+END_SRC
+
+
+** install selected packages
+   #+BEGIN_SRC  emacs-lisp
+
+   (setq package-selected-packages imxxb/packages)
+
+   (package-refresh-contents)
+   (package-install-selected-packages)
+   #+END_SRC
+
+* agenda
+  #+BEGIN_SRC emacs-lisp
+  (global-set-key "\C-ca" 'org-agenda)
+  #+END_SRC
+  
+
+* kbd
+  #+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "<f2>") 'open-init-file)
+  (global-set-key (kbd "<f1>") 'eval-buffer)
+  #+END_SRC
+** recentf
+   #+BEGIN_SRC emacs-lisp
+   (require 'recentf)
+   (setq recentf-max-menu-item 10)
+   (global-set-key (kbd "C-x C-r") 'recentf-open-files)
+   #+END_SRC 
+* evil-mode
+  #+BEGIN_SRC emacs-lisp
+  (evil-mode 1)
+  #+END_SRC
+  
+* UI
+  #+BEGIN_SRC emacs-lisp
+  (load-theme 'monokai 1)
+  (set-frame-font "Inconsolata-13")
+  #+END_SRC
