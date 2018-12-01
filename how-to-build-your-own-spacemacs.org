@@ -1,4 +1,6 @@
 * how to build your own spacemacs
+use babel turn [how to build your owner spacemacs](https://sam217pa.github.io/2016/09/02/how-to-build-your-own-spacemacs/) code to configurations
+
 ** initialize
 *** require package
 #+BEGIN_SRC emacs-lisp
