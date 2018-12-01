@@ -1,0 +1,146 @@
+* how to build your own spacemacs
+** initialize
+*** require package
+#+BEGIN_SRC emacs-lisp
+  (require 'package)
+#+END_SRC
+*** not to load any packages before starting up
+    #+BEGIN_SRC emacs-lisp
+    (setq package-enable-at-startup nil) 
+    #+END_SRC
+*** tell emacs where on the internet to look up for new packages.
+    #+BEGIN_SRC emacs-lisp
+      (setq package-archives 
+	    '(("org" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+	      ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+	      ("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+	      ("marmalade" . "http://marmalade-repo.org/packages/")))
+      (package-initialize)
+    #+END_SRC
+
+*** bootstrap `use-package'
+    #+BEGIN_SRC emacs-lisp
+      (unless (package-installed-p 'use-package) ; unless it is already installed
+	(package-refresh-contents) ; updage packages archive
+	(package-install 'use-package)) ; and install the most recent version of use-package
+      (require 'use-package) ; guess what this one does too ?
+    #+END_SRC
+    
+** use general package
+   #+BEGIN_SRC emacs-lisp
+   (use-package general :ensure t)
+   #+END_SRC
+   It should check for the general package and make sure it is accessible. 
+   If not, the :ensure t part of the previous chunks tells use-package to download it and place it somewhere accessible, in ~/.emacs.d/elpa/ by default2.
+
+   Now every function in the general package is available to you. 
+   We will now use the same use-package statement to customize the general package. 
+   We need the :config keyword of the use-package macro to do just that.
+   
+** use evil-mode
+   #+BEGIN_SRC emacs-lisp
+   (use-package evil 
+	:ensure t
+	:config
+	    (evil-mode 1)
+   )
+   #+END_SRC
+
+** use which-key
+   #+BEGIN_SRC emacs-lisp
+     (use-package which-key :ensure t
+       :config
+       (which-key-mode))
+   #+END_SRC
+
+** TODO use avy
+   #+BEGIN_SRC emacs-lisp :tangle no
+     (use-package avy :ensure t
+       :commands (avy-goto-word-1))
+
+     (general-define-key "C-'" 'avy-goto-word-1)
+   #+END_SRC
+
+ But then we do not need this package right when we start Emacs. 
+ It can wait until we first call avy-goto-word-1 or any other command from the avy package.
+ So we are going to put this command in the list of command that triggers the loading of the avy package.
+ We use the :commands keyword to do that.
+
+** Move in Emacs : the abo-abo way 
+*** Counsel
+#+BEGIN_SRC emacs-lisp
+  (use-package counsel :ensure t)
+#+END_SRC
+    allow you to find recently visited files, to switch between buffers,
+    to search for a string in the current git directory, 
+    to search for a file in the current git directory, 
+    to search for Emacs function, 
+    to search for system applications to open, 
+    to search for music in rythmbox, to … . Well, you get the idea. 
+*** Swiper
+#+BEGIN_SRC emacs-lisp
+  (use-package swiper :ensure t)
+#+END_SRC
+    allow you to find text really really quickly inside an Emacs buffer.
+
+*** Ivy
+#+BEGIN_SRC emacs-lisp
+  (use-package ivy :ensure t)
+#+END_SRC
+
+    proposes completion candidates to the two other, 
+    and to many other Emacs function that needs completion and narrowing. 
+*** another ecosystem centered around Helm. 
+    The spacemacs dev chose to use Helm as a central tool
+
+*** bind in Emacs : the general way
+
+ Recently, a growing user base of Emacs user started to use Evil, 
+ a vim emulation built on top of Emacs command. 
+ It works just flawlessly. 
+ When they did, 
+ they developped some ways to bind keys to functions like in Vim. 
+ One of the most successful solution to this is evil-leader. 
+ And then another Evil user by the pseudo of noctuid created a package called general.el.
+ Of all the way I know to define keys in Emacs, this one is the most versatile and the simplest solution to defining keybindings.
+ There is many ways to define keybindings in general.el. Since they are all constructed around general-define-key, it is the most flexible. So let’s use that to bind some keys.
+#+BEGIN_SRC emacs-lisp
+  (general-define-key
+   ;; replace default keybindings
+   "C-s" 'swiper             ; search for string in current buffer
+   "M-x" 'counsel-M-x        ; replace default M-x with ivy backend
+   )
+
+#+END_SRC
+ This one is pretty simple. It binds C-s to swiper and M-x to counsel-M-x.
+ Those two keys are probably amongs the two most used keybindings in Emacs.
+ But General allows more complex solution to keybindings definition. 
+*** define a :prefix.
+Let’s say we want all of our personnal keybindings bound to C-c XY, where XY is a combination of our choice. 
+#+BEGIN_SRC emacs-lisp
+  (general-define-key
+   :states '(normal)
+   :prefix "SPC"
+   ;; bind to simple key press
+   "b"	'ivy-switch-buffer  ; change buffer, chose using ivy
+   "/"   'counsel-git-grep   ; find string in git project
+   ;; bind to double key press
+   "f"   '(:ignore t :which-key "files")
+   "ff"  'counsel-find-file
+   "fr"	'counsel-recentf
+   "p"   '(:ignore t :which-key "project")
+   "pf"  '(counsel-git :which-key "find file in git dir")
+   )
+#+END_SRC
+ Now C-c b switches buffer using Ivy. And C-c f then f finds files. And C-c f then r find recent files. 
+ Now we can see a pattern here: we just placed all command related to finding files under a C-c f prefix. It would be great if we could know when we press C-c what the f corresponds to.
+
+ But hey it is Emacs. There is a package for it. It is called which-key. So guess what ?
+
+** use monokai theme
+   #+BEGIN_SRC emacs-lisp
+     (use-package monokai-theme
+       :ensure t
+       :config (load-theme 'monokai 1)
+       )
+   #+END_SRC

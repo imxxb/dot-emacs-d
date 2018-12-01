@@ -62,3 +62,9 @@
   (load-theme 'monokai 1)
   (set-frame-font "Inconsolata-13")
   #+END_SRC
+
+* defaults
+** truncate
+   #+BEGIN_SRC emacs-lisp
+   (set-default 'truncate-lines t)
+   #+END_SRC
