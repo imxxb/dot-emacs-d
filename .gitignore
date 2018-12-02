@@ -4,8 +4,6 @@ elpa/
 \#*\#
 recentf
 configuration.el
-_configuration.el
-_configuration.org
 init.el
 network-security.data
-how-to-build-your-own-spacemacs.el
+dest/
