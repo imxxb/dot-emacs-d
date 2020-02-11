@@ -1,0 +1,12 @@
+
+* emacs是一个操作系统，只是缺乏一个decent编辑器
+我是vi用户，迁移到emacs的一个重要原因是evil-mode
+
+#+BEGIN_SRC emacs-lisp
+(use-package evil
+:ensure t
+:config
+(evil-mode 1)
+)
+
+#+END_SRC

@@ -4,6 +4,5 @@ elpa/
 \#*\#
 recentf
 configuration.el
-init.el
 network-security.data
 dest/
