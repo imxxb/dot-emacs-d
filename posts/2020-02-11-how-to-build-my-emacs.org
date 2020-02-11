@@ -8,3 +8,19 @@
       :config (evil-mode 1))
 
   #+END_SRC
+
+* 使用emacs的git客户端Magit
+** 安装Magit
+   #+BEGIN_SRC emacs-lisp
+     (use-package magit
+       :ensure t
+       :pin melpa
+       )
+   #+END_SRC
+** 常用的Magit操作
+   1. Tab 显示diff
+   2. s   stage
+   3. u   ustage
+   4. c c commit
+   5. P   push
+   6. F   pull
