@@ -1,5 +1,5 @@
 
-* emacs是一个操作系统，只是缺乏一个decent编辑器
+* emacs是一个操作系统，只是缺乏一个decent编辑器                   :evil_mode:
   我是vi用户，迁移到emacs的一个重要原因是evil-mode
 
   #+BEGIN_SRC emacs-lisp
@@ -9,38 +9,46 @@
 
   #+END_SRC
 
-* 使用emacs的git客户端Magit
-** 安装Magit
-   #+BEGIN_SRC emacs-lisp
-     (use-package magit
-       :ensure t
-       :pin melpa
-       )
-   #+END_SRC
-** 常用的Magit操作
-   1. Tab 显示diff
-   2. s   stage
-   3. u   ustage
-   4. c c commit
-   5. P   push
-   6. F   pull
-
-* TODO 分解到第一层
-
-* TODO 编写xorochi-eval-init-file函数
-
-* 使用leader key
+* 使用leader key                                                        :kbd:
   #+BEGIN_SRC emacs-lisp
     (use-package general :ensure t)
     (use-package which-key :ensure t
       :config (which-key-mode)
       )
 
-
     (general-define-key
      :states '(normal)
      :prefix "SPC"
+     "f" '(:ignore t :which-key "files")
+     "b" '(:ignore t :which-key "buffers")
+     "be" 'eval-buffer
      )
   #+END_SRC
+
+* 安装emacs的git客户端Magit                                           :magit:
+   #+BEGIN_SRC emacs-lisp
+     (use-package magit
+       :ensure t
+       :pin melpa
+       )
+   #+END_SRC
+
+* 定义Magit的快捷键                                               :magit:kbd:
+   #+BEGIN_SRC emacs-lisp
+    (general-define-key
+     :states '(normal)
+     :prefix "SPC"
+     "g" '(:ignore t :which-key "magit")
+     "gs" 'magit-status
+     )
+   #+END_SRC
+
+* 常用的Magit操作清单                                                 :magit:
+   1. Tab 显示diff
+   2. s   stage
+   3. u   ustage
+   4. c c commit
+   5. P   push
+   6. F   pull
 
 * TODO 快速打开文件和快速切换buffs
