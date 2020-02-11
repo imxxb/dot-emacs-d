@@ -6,3 +6,4 @@ recentf
 configuration.el
 network-security.data
 dest/
+posts/*.el
