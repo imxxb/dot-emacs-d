@@ -24,3 +24,23 @@
    4. c c commit
    5. P   push
    6. F   pull
+
+* TODO 分解到第一层
+
+* TODO 编写xorochi-eval-init-file函数
+
+* 使用leader key
+  #+BEGIN_SRC emacs-lisp
+    (use-package general :ensure t)
+    (use-package which-key :ensure t
+      :config (which-key-mode)
+      )
+
+
+    (general-define-key
+     :states '(normal)
+     :prefix "SPC"
+     )
+  #+END_SRC
+
+* TODO 快速打开文件和快速切换buffs
