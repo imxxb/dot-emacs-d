@@ -51,7 +51,22 @@
    5. P   push
    6. F   pull
 
-* 快速打开最近使用过的文件
+      
+* 自动补全文件、buffs查找                                               :kbd:
+  #+BEGIN_SRC emacs-lisp
+    (use-package ivy :ensure t)
+    (use-package swiper :ensure t)
+    (use-package counsel :ensure t)
+
+    (general-define-key
+     :states 'normal
+     :prefix "SPC"
+     "ff" 'counsel-find-file
+     "bs" 'ivy-switch-buffer
+     )
+
+  #+END_SRC
+* 快速打开最近使用过的文件                                        :recentf:
   #+BEGIN_SRC emacs-lisp
     (require 'recentf)
     (recentf-mode 1)
@@ -59,7 +74,7 @@
     (general-define-key
      :states 'normal
      :prefix "SPC"
-     "fr" 'recentf-open-files
+     "fr" 'counsel-recentf
      )
 
   #+END_SRC
