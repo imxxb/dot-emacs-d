@@ -17,7 +17,7 @@
       )
 
     (general-define-key
-     :states '(normal)
+     :states 'normal
      :prefix "SPC"
      "f" '(:ignore t :which-key "files")
      "b" '(:ignore t :which-key "buffers")
@@ -36,7 +36,7 @@
 * 定义Magit的快捷键                                               :magit:kbd:
    #+BEGIN_SRC emacs-lisp
     (general-define-key
-     :states '(normal)
+     :states 'normal
      :prefix "SPC"
      "g" '(:ignore t :which-key "magit")
      "gs" 'magit-status
@@ -51,4 +51,15 @@
    5. P   push
    6. F   pull
 
-* TODO 快速打开文件和快速切换buffs
+* 快速打开最近使用过的文件
+  #+BEGIN_SRC emacs-lisp
+    (require 'recentf)
+    (recentf-mode 1)
+
+    (general-define-key
+     :states 'normal
+     :prefix "SPC"
+     "fr" 'recentf-open-files
+     )
+
+  #+END_SRC
