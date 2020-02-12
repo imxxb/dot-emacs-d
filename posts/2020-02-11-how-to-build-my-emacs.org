@@ -78,3 +78,13 @@
      )
 
   #+END_SRC
+
+* 怎样安装一个好看的theme？
+  安装monokai-theme，将font设为Inconsolata，等宽字体
+   #+BEGIN_SRC emacs-lisp
+     (use-package monokai-theme
+       :ensure t
+       :config (load-theme 'monokai 1)
+       )
+     (set-frame-font "Inconsolata-13")
+   #+END_SRC
