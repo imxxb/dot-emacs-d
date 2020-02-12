@@ -1,5 +1,5 @@
 
-* emacs是一个操作系统，只是缺乏一个decent编辑器                   :evil_mode:
+* emacs是一个操作系统，只是缺乏一个decent编辑器?                  :evil_mode:
   我是vi用户，迁移到emacs的一个重要原因是evil-mode
 
   #+BEGIN_SRC emacs-lisp
@@ -9,7 +9,7 @@
 
   #+END_SRC
 
-* 使用leader key                                                        :kbd:
+* 怎样使用使用spacemacs-like leader key？                               :kbd:
   #+BEGIN_SRC emacs-lisp
     (use-package general :ensure t)
     (use-package which-key :ensure t
@@ -22,19 +22,18 @@
      "f" '(:ignore t :which-key "files")
      "b" '(:ignore t :which-key "buffers")
      "be" 'eval-buffer
+     "bk" 'kill-buffer
      )
   #+END_SRC
 
-* 安装emacs的git客户端Magit                                           :magit:
+* 怎样在emacs中使用git？                                          :magit:kbd:
+  安装emacs的git客户端Magit
    #+BEGIN_SRC emacs-lisp
      (use-package magit
        :ensure t
        :pin melpa
        )
-   #+END_SRC
 
-* 定义Magit的快捷键                                               :magit:kbd:
-   #+BEGIN_SRC emacs-lisp
     (general-define-key
      :states 'normal
      :prefix "SPC"
@@ -43,7 +42,7 @@
      )
    #+END_SRC
 
-* 常用的Magit操作清单                                                 :magit:
+* 常用的Magit操作有哪些？                                             :magit:
    1. Tab 显示diff
    2. s   stage
    3. u   ustage
@@ -52,7 +51,7 @@
    6. F   pull
 
       
-* 自动补全文件、buffs查找                                               :kbd:
+* 怎样自动补全文件、buffs查找?                                          :kbd:
   #+BEGIN_SRC emacs-lisp
     (use-package ivy :ensure t)
     (use-package swiper :ensure t)
@@ -66,7 +65,8 @@
      )
 
   #+END_SRC
-* 快速打开最近使用过的文件                                        :recentf:
+  
+* 怎样快速打开最近使用过的文件?                                     :recentf:
   #+BEGIN_SRC emacs-lisp
     (require 'recentf)
     (recentf-mode 1)
